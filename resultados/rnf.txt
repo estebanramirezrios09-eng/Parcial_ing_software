@@ -1,0 +1,26 @@
+VERIFICACIÓN DE REQUISITOS NO FUNCIONALES
+==========================================
+
+RNF-01 Modificabilidad del contenido: CUMPLE
+  Archivos .py del motor modificados al usar la 2.ª historia: 0 (meta: 0)
+  IDs de escena/opción/variable de las historias hallados en literales/nombres de transmision/*.py: 0 (meta: 0)
+  Escenas de la 2.ª historia: 4 (meta: >= 3); llegó a un final: True
+
+RNF-02 Claridad de los errores: CUMPLE
+  Variantes con mensaje correcto: 10/10 (meta: 10/10)
+  OK    E_ILEGIBLE        contiene 'línea': [E_ILEGIBLE] El contenido no es JSON válido (línea 1, columna 2: Expecting property name enclosed in double quotes). (campo: variante.json)
+  OK    E_ESTRUCTURA      contiene 'escenas': [E_ESTRUCTURA] El campo 'escenas' de la historia debe ser una lista de escenas. (campo: escenas)
+  OK    E_CAMPO_AUSENTE   contiene 'titulo': [E_CAMPO_AUSENTE] Falta el campo obligatorio 'titulo' de la historia. (campo: titulo)
+  OK    E_INICIO          contiene 'E0': [E_INICIO] La escena inicial 'E0' no existe entre las escenas. (campo: inicio)
+  OK    E_ESCENA_DUP      contiene 'E5': [E_ESCENA_DUP] El ID de escena 'E5' está repetido. (campo: escenas[5].id)
+  OK    E_OPCION_DUP      contiene 'investigar': [E_OPCION_DUP] El ID de opción 'investigar' está repetido en la escena 'E2'. (campo: escenas[E2].opciones[investigar].id)
+  OK    E_DESTINO         contiene 'E99': [E_DESTINO] La opción 'revisar' de la escena 'E1' apunta a un destino inexistente: 'E99'. (campo: escenas[E1].opciones[revisar].destino)
+  OK    E_VARIABLE        contiene 'fantasma': [E_VARIABLE] En condiciones de la opción 'cortar' de la escena 'E3' se usa la variable no declarada 'fantasma'. (campo: escenas[E3].opciones[cortar].condiciones.fantasma)
+  OK    E_NO_BOOL         contiene 'conoce_origen': [E_NO_BOOL] En efectos de la opción 'investigar' de la escena 'E2', la variable 'conoce_origen' debe valer true o false y vale 1. (campo: escenas[E2].opciones[investigar].efectos.conoce_origen)
+  OK    E_FINAL_OPCIONES  contiene 'E2': [E_FINAL_OPCIONES] La escena no final 'E2' debe tener al menos una opción y no tiene ninguna. (campo: escenas[E2].opciones)
+
+RNF-03 Confiabilidad ante entradas inválidas: CUMPLE
+  Contenidos mutados: 500 (rechazados 484, aceptados 16); entradas aleatorias al motor y la consola: 500 partidas; semilla 20261014
+  Excepciones no controladas: 0 (meta: 0)
+
+RESULTADO GLOBAL: 3/3 RNF cumplen

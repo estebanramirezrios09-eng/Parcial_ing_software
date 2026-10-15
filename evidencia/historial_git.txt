@@ -1,0 +1,8 @@
+# Historial de Git exportado el 2026-10-14 01:27 -05
+# Comando: git log --decorate --date=iso --pretty=format:'%h | %an | %ad | %s%d'
+# Versión previa al cambio: tag v1.0.0. Regenerar con el comando anterior antes de entregar.
+
+41bfb30 | Esteban Ramírez Rios | 2026-10-14 01:27:00 -0500 | Documentación: README, informe, anexo, diagramas, backlog, guion de demo y resultados (HEAD -> master, tag: v1.0.0)
+d608162 | Esteban Ramírez Rios | 2026-10-14 01:22:01 -0500 | Verificación de RNF-01..03 (medición de RNF-01 con ast para evitar falso positivo)
+39ca324 | Esteban Ramírez Rios | 2026-10-14 01:22:01 -0500 | Pruebas automatizadas U1-U5 e I1 con CA01-CA03
+f5a98ac | Esteban Ramírez Rios | 2026-10-14 01:22:01 -0500 | Motor v1.0.0: dominio, validación, cargador, sesión, consola e historias JSON

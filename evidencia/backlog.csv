@@ -1,0 +1,25 @@
+id,titulo,unidad,responsable,estado_inicial,estado_actual
+B01,Comprender el encargo y delimitar el alcance,U1,Esteban Ramírez Rios,Por hacer,Hecho
+B02,"Problema, actores, 2 riesgos y decisión de responsabilidad profesional",U1,Esteban Ramírez Rios,Por hacer,Hecho
+B03,Elegir proceso y compararlo con una alternativa,U2,Esteban Ramírez Rios,Por hacer,Hecho
+B04,Redactar RF-01..RF-18 con criterios de aceptación,U4,Esteban Ramírez Rios,Por hacer,Hecho
+B05,Definir 3 RNF medibles con procedimiento,U4,Esteban Ramírez Rios,Por hacer,Hecho
+B06,Preguntas/supuestos y revisión cruzada de requisitos,U4,Esteban Ramírez Rios,Por hacer,Hecho
+B07,Diagramas de contexto y casos de uso,U5,Esteban Ramírez Rios,Por hacer,Hecho
+B08,Diagramas de clases y de secuencia,U5,Esteban Ramírez Rios,Por hacer,Hecho
+B09,Diagrama de estados de la sesión,U5,Esteban Ramírez Rios,Por hacer,Hecho
+B10,Arquitectura en capas y 2 decisiones documentadas,U6,Esteban Ramírez Rios,Por hacer,Hecho
+B11,Modelos de dominio y reglas puras,U7,Esteban Ramírez Rios,Por hacer,Hecho
+B12,Validador y cargador con diagnósticos,U7,Esteban Ramírez Rios,Por hacer,Hecho
+B13,Sesión de juego y consola,U7,Esteban Ramírez Rios,Por hacer,Hecho
+B14,"Historias JSON (principal, segunda e inválida)",U7,Esteban Ramírez Rios,Por hacer,Hecho
+B15,Pruebas U1-U5,U7,Esteban Ramírez Rios,Por hacer,Hecho
+B16,Prueba I1 y criterios CA01-CA03,U7,Esteban Ramírez Rios,Por hacer,Hecho
+B17,Verificación de los 3 RNF,U4,Esteban Ramírez Rios,Por hacer,Hecho
+B18,README y matriz de trazabilidad,U7,Esteban Ramírez Rios,Por hacer,Hecho
+B19,Informe PDF y anexo PDF,Todas,Esteban Ramírez Rios,Por hacer,Hecho
+B20,Guion y grabación de la demostración,Entrega,Esteban Ramírez Rios,Por hacer,Por hacer
+B21,Análisis de impacto de la solicitud de cambio (hora 6),U3,Esteban Ramírez Rios,Por hacer,Hecho
+B22,Implementar el cambio y sus pruebas,U7,Esteban Ramírez Rios,Por hacer,Hecho
+B23,"Actualizar requisitos, modelos y trazabilidad",U4,Esteban Ramírez Rios,Por hacer,Hecho
+B24,Empaquetar el ZIP y verificar la carga,Entrega,Esteban Ramírez Rios,Por hacer,Por hacer

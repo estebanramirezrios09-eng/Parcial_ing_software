@@ -1,0 +1,30 @@
+{
+  "titulo": "Copia con error: destino inexistente (CA03)",
+  "inicio": "E1",
+  "variables": {
+    "conoce_origen": false,
+    "confia_en_la_voz": false
+  },
+  "escenas": [
+    {
+      "id": "E1",
+      "texto": "Son las 02:13. Una voz pide ayuda desde la estación Aurora.",
+      "final": false,
+      "opciones": [
+        {
+          "id": "revisar",
+          "texto": "Revisar señal",
+          "destino": "E99",
+          "condiciones": {},
+          "efectos": {}
+        }
+      ]
+    },
+    {
+      "id": "E2",
+      "texto": "Escena final de relleno.",
+      "final": true,
+      "opciones": []
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+# Gestión del cambio — «Deshacer la última decisión»
+
+> Estado: **implementado** en la versión **1.1.0** (versión de partida: 1.0.0). Solicitud recibida en la hora 6
+> (documento «Anexo hora 6 — La última transmisión»); cierre en la hora 12.
+
+## 1. Solicitud (resumen en palabras propias)
+
+- **Pide:** que el lector pueda deshacer su última decisión y que se reviertan todas sus consecuencias (escena y variables).
+  Un solo nivel; sin retroceso al comenzar ni tras reiniciar; una entrada inválida no altera lo que se deshará; se puede deshacer
+  desde un final (se vuelve a E3). Reemplaza el acuerdo provisional «sin retroceso».
+- **No pide:** rehacer, varios niveles, guardado entre ejecuciones ni una arquitectura concreta.
+- **Supuestos:** (1) el historial de elecciones (`historial`) también se restaura, para que sea coherente con la escena;
+  (2) el motor es genérico: deshacer no depende de IDs de la historia; (3) en consola, `u` deshace y `--ruta` acepta `@deshacer`.
+
+## 2. Análisis de impacto
+
+| Artefacto | ¿Afectado? | Qué cambia |
+|---|---|---|
+| Requisitos | Sí | Nuevos RF-19..RF-22; el «acuerdo provisional» del informe queda reemplazado; RF-11 se verifica también para el retroceso |
+| Modelos | Sí | Clases (`Sesion.deshacer`, `puede_deshacer`, `SinRetroceso`), estados (transición `deshacer()`), secuencia (guarda estado previo). Contexto, casos de uso y componentes: sin cambio estructural |
+| Componentes | Sí | `sesion.py` (instantánea previa, `deshacer`), `consola.py` (`u`, `@deshacer`), `__init__.py` (exporta `SinRetroceso`, versión 1.1.0). `modelos.py`, `reglas.py`, `validador.py`, `cargador.py`: sin cambio |
+| Formato JSON | No | El contrato de contenido no cambia; las historias no se tocan |
+| Historias | No | `la_ultima_transmision.json` y `el_faro.json` sin cambios |
+| Pruebas existentes | U5 e I1 extendidas | U5: reiniciar elimina el historial de retroceso; I1: deshacer desde un final tras cargar el archivo y consola. U1–U4 sin cambio |
+| Prueba nueva | U6 | `pruebas/test_u6_deshacer.py` |
+| Backlog | Sí | B21–B23 en «Hecho» |
+
+## 3. Implementación
+
+- `Sesion` guarda una instantánea (escena, variables, historial) **solo después** de validar la elección; `deshacer()` la restaura y la consume.
+- No se añadió ninguna referencia a IDs de la historia (RNF-01 sigue cumpliendo).
+
+## 4. Evidencia
+
+- [x] U6 + U5 e I1 extendidas → 6 escenarios unitarios + 1 de integración.
+- [x] `python -m pytest pruebas -v` → 103 pruebas pasan (resultados/pruebas.txt); RNF 3/3 (resultados/rnf.txt).
+- [ ] Demostrar el comportamiento en el video: `python -m transmision --ruta revisar,investigar,@deshacer,continuar`.
+- [x] Trazabilidad (anexo B) y diagramas A.3, A.4 y A.5 actualizados; informe §4, §7 y §8.
+- [ ] Etiquetas Git: `git tag v1.0.0` (versión previa) y `git tag v1.1.0` (posterior).

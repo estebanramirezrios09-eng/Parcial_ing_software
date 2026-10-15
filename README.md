@@ -1,6 +1,6 @@
 # La última transmisión — motor de historias interactivas
 
-Parcial práctico de Ingeniería de Software · versión del motor: **1.0.0**
+Parcial práctico de Ingeniería de Software · versión del motor: **1.1.0** (1.0.0 + deshacer la última decisión)
 
 **Integrantes:** Esteban Ramírez Rios
 
@@ -28,16 +28,17 @@ python -m transmision                                   # historia principal, pa
 python -m transmision historias/el_faro.json            # segunda historia, mismo motor
 python -m transmision historias/el_faro.json --validar  # solo validar el archivo
 python -m transmision --ruta revisar,investigar,activar_codigo   # reproduce un recorrido
+python -m transmision --ruta revisar,investigar,@deshacer,continuar   # '@deshacer' retrocede una decisión
 ```
 
-En la partida interactiva se escribe el **número** de la opción mostrada; `r` reinicia, `q` sale. Al llegar a un
+En la partida interactiva se escribe el **número** de la opción mostrada; `u` deshace la última decisión, `r` reinicia, `q` sale. Al llegar a un
 final (o a un bloqueo) se ofrece jugar de nuevo. Código de salida: `0` correcto, `1` recorrido que no llega a un
 final, `2` historia inválida o inexistente.
 
 ## Pruebas
 
 ```bash
-python -m pytest pruebas -v                # 78 pruebas automatizadas (U1-U5, I1, CA01-CA03, RNF)
+python -m pytest pruebas -v                # 103 pruebas automatizadas (U1-U6, I1, CA01-CA03, RNF)
 python pruebas/verificar_rnf.py            # verificación completa de los 3 RNF -> resultados/rnf.txt
 ```
 
@@ -102,9 +103,11 @@ demo/          guion_demo.md
 
 ## Decisiones y acuerdos provisionales
 
-- **Retroceso:** no se implementa. La escritora quiere permitir retroceder siempre y el diseñador quiere decisiones
-  irreversibles; el conflicto y la pregunta de aclaración están en el informe (sección 4). Acuerdo provisional:
-  sin retroceso, sin presuponer la decisión del cliente.
+- **Retroceso (cambio de la hora 6, v1.1.0):** el cliente decidió que el lector pueda deshacer su última decisión, lo que
+  reemplaza el acuerdo provisional de v1.0.0 (sin retroceso). Reglas: deshacer restaura la escena, las variables y el historial
+  previos a la última elección válida; es de **un solo nivel** (no hay otro retroceso hasta una nueva elección válida) y no hay
+  rehacer; al comenzar o tras reiniciar no hay retroceso disponible; una opción inexistente o no habilitada no modifica la
+  sesión ni sustituye lo que se deshará; se puede deshacer desde E4, E5 o E6 (se regresa a E3). Requisitos RF-19 a RF-22 en el informe.
 - El motor acepta tanto el número visible como el ID de la opción; el ID de una opción no habilitada se rechaza
   siempre (CA02).
 

@@ -1,0 +1,64 @@
+{
+  "titulo": "El faro de Punta Gorda (segunda historia de demostración)",
+  "inicio": "entrada",
+  "variables": {
+    "tiene_llave": false,
+    "linterna_encendida": false
+  },
+  "escenas": [
+    {
+      "id": "entrada",
+      "texto": "Una tormenta obliga a la guardacostas a refugiarse en el faro. Sobre la mesa hay una llave oxidada y una linterna.",
+      "final": false,
+      "opciones": [
+        {
+          "id": "tomar_llave",
+          "texto": "Tomar la llave",
+          "destino": "escalera",
+          "condiciones": {},
+          "efectos": {"tiene_llave": true}
+        },
+        {
+          "id": "encender_linterna",
+          "texto": "Encender la linterna y subir",
+          "destino": "escalera",
+          "condiciones": {},
+          "efectos": {"linterna_encendida": true}
+        }
+      ]
+    },
+    {
+      "id": "escalera",
+      "texto": "Al final de la escalera hay una puerta cerrada. Abajo, el mar golpea las rocas.",
+      "final": false,
+      "opciones": [
+        {
+          "id": "abrir_puerta",
+          "texto": "Abrir la puerta con la llave",
+          "destino": "sala_luz",
+          "condiciones": {"tiene_llave": true},
+          "efectos": {}
+        },
+        {
+          "id": "esperar",
+          "texto": "Esperar a que amaine la tormenta",
+          "destino": "amanecer",
+          "condiciones": {},
+          "efectos": {}
+        }
+      ]
+    },
+    {
+      "id": "sala_luz",
+      "texto": "La guardacostas enciende la lámpara del faro y guía a un barco pesquero hasta el puerto.",
+      "final": true,
+      "opciones": []
+    },
+    {
+      "id": "amanecer",
+      "texto": "La tormenta pasa y el faro permanece apagado. Nadie sabrá del barco en la bruma.",
+      "final": true,
+      "opciones": []
+    }
+  ]
+}
