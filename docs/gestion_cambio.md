@@ -34,6 +34,7 @@
 
 - [x] U6 + U5 e I1 extendidas → 6 escenarios unitarios + 1 de integración.
 - [x] `python -m pytest pruebas -v` → 103 pruebas pasan (resultados/pruebas.txt); RNF 3/3 (resultados/rnf.txt).
-- [ ] Demostrar el comportamiento en el video: `python -m transmision --ruta revisar,investigar,@deshacer,continuar`.
+- [ ] Demostrar el comportamiento en el video: `python -m transmision --ruta "revisar,investigar,@deshacer,continuar"`.
 - [x] Trazabilidad (anexo B) y diagramas A.3, A.4 y A.5 actualizados; informe §4, §7 y §8.
-- [ ] Etiquetas Git: `git tag v1.0.0` (versión previa) y `git tag v1.1.0` (posterior).
+- [x] Versión posterior identificada: commit `2fa3133`, etiqueta `v1.1.0`; historial real exportado en `evidencia/historial_git.txt`.
+- [ ] Recuperar la versión ejecutable anterior al cambio: el repositorio disponible no contiene `v1.0.0`. Alcance y limitaciones documentados en `evidencia/versiones.md`.

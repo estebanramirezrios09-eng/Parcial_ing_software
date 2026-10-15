@@ -1,0 +1,27 @@
+digraph G { rankdir=BT; graph [fontname="DejaVu Sans", pad=0.2]; node [fontname="DejaVu Sans", fontsize=11]; edge [fontname="DejaVu Sans", fontsize=9];
+ node [shape=record, fontsize=10, style=filled, fillcolor="#ffffff", color="#46618f"];
+ Historia [label="{Historia|titulo: str\linicio: str\lvariables: dict[str,bool]\lescenas: dict[str,Escena]\l|escena(id): Escena\l}"];
+ Escena [label="{Escena|id: str\ltexto: str\lfinal: bool\lopciones: tuple[Opcion]\l}"];
+ Opcion [label="{Opcion|id: str\ltexto: str\ldestino: str\lcondiciones: dict[str,bool]\lefectos: dict[str,bool]\l}"];
+ Sesion [label="{Sesion|escena: Escena\lvariables: dict\lhistorial: list\les_final: bool\lbloqueada: bool\lpuede_deshacer: bool\l|opciones_disponibles()\lelegir(opcion_id): Escena\ldeshacer(): Escena\lreiniciar()\l}", fillcolor="#dff1e2"];
+ Reglas [label="{«módulo» reglas|condiciones_cumplidas()\lopcion_habilitada()\laplicar_efectos()\l}"];
+ Cargador [label="{«módulo» cargador|cargar_archivo(ruta)\lcargar_desde_texto(texto)\l}"];
+ Validador [label="{«módulo» validador|validar(datos): list[Diagnostico]\lconstruir_historia(datos)\l}"];
+ Diag [label="{Diagnostico|codigo: str\lmensaje: str\lcampo: str\l}"];
+ Inval [label="{HistoriaInvalida «Exception»|diagnosticos: list\lorigen: str\l}"];
+ NoDisp [label="{OpcionNoDisponible «Exception»}"];
+ SinRet [label="{SinRetroceso «Exception»}"];
+ Consola [label="{«módulo» consola|main()\ljugar(sesion, leer, escribir)\lejecutar_ruta()\l}", fillcolor="#fff6dd"];
+ Escena -> Historia [arrowhead=diamond, label="1..*"];
+ Opcion -> Escena [arrowhead=diamond, label="0..*"];
+ Sesion -> Historia [label="recorre", arrowhead=vee];
+ Sesion -> Reglas [style=dashed, arrowhead=vee, label="usa"];
+ Sesion -> NoDisp [style=dashed, arrowhead=vee, label="lanza"];
+ Sesion -> SinRet [style=dashed, arrowhead=vee, label="lanza"];
+ Cargador -> Validador [style=dashed, arrowhead=vee, label="usa"];
+ Cargador -> Inval [style=dashed, arrowhead=vee, label="lanza"];
+ Inval -> Diag [arrowhead=vee, label="1..*"];
+ Validador -> Diag [style=dashed, arrowhead=vee, label="produce"];
+ Consola -> Sesion [arrowhead=vee, label="controla"];
+ Consola -> Cargador [style=dashed, arrowhead=vee, label="usa"];
+}

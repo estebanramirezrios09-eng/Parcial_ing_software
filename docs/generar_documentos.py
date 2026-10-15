@@ -1,6 +1,7 @@
 """Genera docs/informe.pdf (cuerpo) y docs/anexo.pdf (diagramas, matriz, tablero).
 Uso (desde la raíz):  python docs/generar_documentos.py
 Requiere reportlab y haber ejecutado antes docs/generar_diagramas.py y las pruebas."""
+import os
 import pathlib
 import re
 import sys
@@ -17,7 +18,12 @@ from reportlab.platypus import (Image, KeepTogether, PageBreak, Paragraph, Simpl
 
 RAIZ = pathlib.Path(__file__).resolve().parent.parent
 DIAG = RAIZ / "docs" / "diagramas"
-FUENTES = pathlib.Path("/usr/share/fonts/truetype/dejavu")
+if sys.platform == "win32":
+    FUENTES = pathlib.Path(os.environ.get("SystemDrive", "C:") + "/") / "ttf"
+elif sys.platform.startswith("linux"):
+    FUENTES = pathlib.Path("/usr/share/fonts/truetype/dejavu")
+else:
+    sys.exit(f"Plataforma no contemplada para las fuentes: {sys.platform}")
 for nombre, archivo in (("DV", "DejaVuSansCondensed.ttf"), ("DV-B", "DejaVuSansCondensed-Bold.ttf"),
                         ("DV-I", "DejaVuSansCondensed-Oblique.ttf"), ("DV-M", "DejaVuSansMono.ttf")):
     pdfmetrics.registerFont(TTFont(nombre, str(FUENTES / archivo)))
@@ -57,7 +63,6 @@ cel = ParagraphStyle("cel", parent=base, fontSize=7.3, leading=8.9, spaceAfter=0
 celb = ParagraphStyle("celb", parent=cel, fontName="DV-B")
 pie = ParagraphStyle("pie", parent=base, fontSize=7, textColor=colors.grey)
 bul = ParagraphStyle("bul", parent=base, leftIndent=9, bulletIndent=0, spaceAfter=1.5)
-pend = '<font color="#b3261e"><b>[COMPLETAR]</b></font>'
 
 
 def P(t, s=base):
@@ -96,7 +101,7 @@ def informe():
     s = []
     s += [P("La última transmisión — Informe del parcial", tit),
           P("Parcial práctico de Ingeniería de Software · motor de historias interactivas", base),
-          tabla([["Integrantes", "Esteban Ramírez Rios"],
+          tabla([["Integrantes", "Esteban Ramírez Rios - Emmanuel David Angulo"],
                  ["Versión descrita", f"Motor v{VERSION} (v1.0.0 es la versión previa; v1.1.0 incorpora la solicitud de cambio de la hora 6, ver §8). "
                   "Anexo: <b>anexo.pdf</b> (diagramas A, matriz de trazabilidad B, tablero C)."],
                  ["Entrega", f"14 de octubre de 2026 · Repositorio: historial en evidencia/historial_git.txt"]],
@@ -119,7 +124,7 @@ def informe():
                  ["R2. El cambio de la hora 6 llega con poco tiempo y rompe la coherencia entre requisitos, modelos y código.",
                   "Alta / alta",
                   "Motor genérico sin lógica por historia (RNF-01); trazabilidad por ID (anexo B); tiempo reservado para "
-                  "el cambio y pruebas de regresión; versión previa etiquetada en Git."]],
+                  "el cambio y pruebas de regresión; versiones y alcance de la evidencia identificados en evidencia/versiones.md."]],
                 [6.2, 2.3, 9.3]),
           P("<b>Prioridad de atributos de calidad.</b> (1) <i>Modificabilidad del contenido</i>: es la razón de ser del "
             "producto, porque la escritora debe cambiar el relato sin tocar código. (2) <i>Confiabilidad</i>: un cierre "
@@ -138,9 +143,9 @@ def informe():
             "el enfoque incremental deja un producto ejecutable en cada paso y hace barato el cambio de la hora 6."),
           tabla([["Actividad", "Cómo se realiza en esta entrega"],
                  ["Especificación", "RF, RNF y criterios de aceptación escritos antes del código; supuestos registrados (§4)."],
-                 ["Desarrollo", "Capas independientes (dominio, contenido, sesión, interfaz); un commit por capa."],
+                 ["Desarrollo", "Capas independientes (dominio, contenido, sesión, interfaz); motor incorporado en Git y revisiones posteriores."],
                  ["Validación", f"{N_PRUEBAS} pruebas automatizadas, tres recorridos de finales, 3 RNF medidos (§7)."],
-                 ["Evolución", "Hora 6: versión previa etiquetada, análisis de impacto, cambio, trazabilidad actualizada (§8)."]],
+                 ["Evolución", "Hora 6: análisis de impacto, cambio y trazabilidad actualizada; versiones y evidencia disponible documentadas (§8)."]],
                 [3.0, 14.8])]
 
     # ---- 3
@@ -209,7 +214,7 @@ def informe():
           B("<b>P3.</b> ¿Se muestran las variables al lector? <i>Supuesto:</i> no; el estado es interno y solo se ve por sus consecuencias."),
           B("<b>P4.</b> ¿Debe detectarse un final inalcanzable o un ciclo? <i>Respuesta de la guía:</i> no se exige; solo se informa el bloqueo durante la partida."),
           P("Defecto detectado en la revisión y su corrección", h2),
-          P(f"Revisor: {pend}. El borrador de RF-04 decía «en E3 deben verse exactamente dos opciones»: ataba el requisito a una escena de "
+          P("Revisor: Emmanuel David Angulo. El borrador de RF-04 decía «en E3 deben verse exactamente dos opciones»: ataba el requisito a una escena de "
             "la historia y contradecía la exigencia de que el motor no tenga decisiones específicas de E1, E2 u otros IDs. "
             "<b>Corrección:</b> RF-04 se redactó como regla general (mostrar solo opciones habilitadas) y el caso de E3 pasó a ser su criterio "
             "de aceptación CA01.")]
@@ -279,8 +284,11 @@ def informe():
 
     # ---- 8
     s += [P("8. Gestión del cambio (hora 6)", h1),
-          P("<b>Versión previa:</b> motor v1.0.0 (78 pruebas, sin retroceso; acuerdo provisional «no implementar retroceso»). "
-            f"<b>Versión posterior:</b> motor v{VERSION} ({N_PRUEBAS} pruebas, 3/3 RNF). Procedimiento y análisis completos en docs/gestion_cambio.md.", base),
+          P("<b>Versión previa declarada:</b> motor v1.0.0 (sin retroceso; acuerdo provisional «no implementar retroceso»). "
+            "El repositorio recuperado no conserva esa versión ejecutable ni permite verificar su recuento histórico de pruebas. "
+            f"<b>Versión posterior verificada:</b> motor v{VERSION} ({N_PRUEBAS} pruebas, 3/3 RNF), incorporado en el commit 2fa3133 "
+            "e identificado con la etiqueta v1.1.0. Historial real: evidencia/historial_git.txt. Alcance de la evidencia: "
+            "evidencia/versiones.md. Procedimiento y análisis completos: docs/gestion_cambio.md.", base),
           P("<b>Solicitud.</b> El colectivo decidió que el lector pueda deshacer su última decisión, revirtiendo sus consecuencias: restauración exacta de escena y "
             "variables, un solo nivel (sin rehacer), sin retroceso al comenzar ni tras reiniciar, entrada inválida que no altera el historial y deshacer desde "
             "E4, E5 o E6 hacia E3. Reemplaza el acuerdo provisional de no implementar retroceso.", base),
@@ -298,16 +306,21 @@ def informe():
     # ---- 9
     s += [P("9. Fuentes, herramientas de apoyo y aportes", h1),
           P("<b>Herramientas de IA.</b> Se utilizó Claude (Anthropic) para generar un borrador del código, las pruebas, los diagramas y "
-            "este informe a partir de la guía del parcial. <b>Verificación:</b> se ejecutaron las pruebas y la verificación de RNF "
-            f"({N_PRUEBAS} pruebas; 3/3 RNF), se revisaron los diagramas y se corrigieron errores hallados (p. ej., un falso positivo "
-            f"de medición de RNF-01 y rombos de composición invertidos). {pend} Cada integrante debe confirmar que revisó y entiende el "
-            "código y que este uso de IA está permitido por las indicaciones del docente. No se reutilizaron fragmentos de tutoriales."),
+            "este informe a partir de la guía del parcial. Codex (OpenAI) se utilizó como apoyo para revisar la entrega, "
+            "preparar el guion de demostración y ajustar este informe. <b>Verificación:</b> se ejecutaron las pruebas "
+            f"automatizadas ({N_PRUEBAS} aprobadas; resultados/pruebas.txt) y la verificación de los requisitos no funcionales "
+            "(3/3 cumplen; resultados/rnf.txt); se revisaron los diagramas y se corrigieron errores hallados, como un falso "
+            "positivo de medición de RNF-01 y rombos de composición invertidos. <b>Revisión de los integrantes:</b> ambos "
+            "integrantes revisamos el código, las pruebas y la documentación generados con asistencia de IA, comprobamos "
+            "los resultados y comprendemos el funcionamiento de la solución. No se reutilizaron fragmentos de tutoriales."),
           P("<b>Aportes por integrante.</b> Esteban Ramírez Rios: análisis, requisitos, diagramas, implementación del motor, pruebas, "
-            "verificación de RNF, documentación y evidencia (todas las tareas B01–B18 del tablero; ver historial_git.txt).")]
+            "verificación de RNF, documentación y evidencia (todas las tareas B01–B18 del tablero; ver historial_git.txt)."),
+          P("Emmanuel David Angulo: revisión de requisitos (RF-04 y su corrección, §4), verificación, validación y asistencia "
+            "en la ejecución de las pruebas.")]
 
     doc = SimpleDocTemplate(str(RAIZ / "docs" / "informe.pdf"), pagesize=letter, leftMargin=1.8 * cm, rightMargin=1.8 * cm,
                             topMargin=1.5 * cm, bottomMargin=1.6 * cm, title="La última transmisión — Informe",
-                            author="Esteban Ramírez Rios")
+                            author="Esteban Ramírez Rios y Emmanuel David Angulo")
     doc.build(s, onFirstPage=numerar("Informe"), onLaterPages=numerar("Informe"))
 
 
@@ -375,7 +388,7 @@ def anexo():
 
     doc = SimpleDocTemplate(str(RAIZ / "docs" / "anexo.pdf"), pagesize=letter, leftMargin=1.8 * cm, rightMargin=1.8 * cm,
                             topMargin=1.5 * cm, bottomMargin=1.6 * cm, title="La última transmisión — Anexo",
-                            author="Esteban Ramírez Rios")
+                            author="Esteban Ramírez Rios y Emmanuel David Angulo")
     doc.build(s, onFirstPage=numerar("Anexo"), onLaterPages=numerar("Anexo"))
 
 

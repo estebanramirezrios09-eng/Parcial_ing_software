@@ -1,0 +1,12 @@
+digraph G { rankdir=LR; graph [fontname="DejaVu Sans", pad=0.2]; node [fontname="DejaVu Sans", fontsize=11]; edge [fontname="DejaVu Sans", fontsize=9];
+ ini [shape=circle, width=0.2, label="", style=filled, fillcolor="#222222"];
+ node [shape=box, style="rounded,filled", fillcolor="#eef3fb", color="#46618f"];
+ curso [label="EnCurso\n(escena no final con opciones habilitadas)\n――――――――――\nelegir(válida) [destino no final con opciones] / aplicar efectos\nelegir(inválida) / estado intacto\ndeshacer() [hay elección previa] / restaurar escena y variables"];
+ bloq [label="Bloqueada\n(escena no final\nsin opciones habilitadas)", fillcolor="#fde8e8", color="#aa3333"];
+ fin [label="Finalizada\n(escena final)", fillcolor="#dff1e2", color="#3b7a4b", peripheries=2];
+ ini -> curso [label="nueva partida"];
+ curso -> fin [label="elegir(opción válida)\n[destino final]"];
+ curso -> bloq [label="elegir(opción válida)\n[destino sin opciones habilitadas]"];
+ fin -> curso [label="deshacer()\n[hay elección previa]"]; bloq -> curso [label="deshacer()\n[hay elección previa]"];
+ fin -> curso [label="reiniciar()"]; bloq -> curso [label="reiniciar()"];
+}

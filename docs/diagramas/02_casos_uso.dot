@@ -1,0 +1,14 @@
+digraph G { rankdir=LR; graph [fontname="DejaVu Sans", pad=0.2]; node [fontname="DejaVu Sans", fontsize=11]; edge [fontname="DejaVu Sans", fontsize=9];
+ node [shape=box, style="filled", fillcolor="#eef3fb", color="#46618f"];
+ lec [label="«actor»\nLector"]; coo [label="«actor»\nCoordinadora / Escritora"];
+ subgraph cluster_s { label="Motor de historias interactivas"; style="rounded"; color="#888888";
+  node [shape=ellipse, fillcolor="#ffffff"];
+  cu1 [label="CU1 Cargar historia"]; cu2 [label="CU2 Validar historia"];
+  cu3 [label="CU3 Ver escena y opciones"]; cu4 [label="CU4 Elegir opción"];
+  cu5 [label="CU5 Reiniciar partida"]; cu6 [label="CU6 Reproducir recorrido"];
+ }
+ coo -> cu2; coo -> cu1; coo -> cu6; lec -> cu1; lec -> cu3; lec -> cu4; lec -> cu5;
+ cu1 -> cu2 [style=dashed, label="«include»"];
+ cu4 -> cu3 [style=dashed, label="«include»"];
+ cu6 -> cu4 [style=dashed, label="«include»"];
+}

@@ -1,0 +1,3 @@
+# Conservar los bytes de los documentos e imágenes al hacer checkout en Windows.
+*.pdf binary
+*.png binary

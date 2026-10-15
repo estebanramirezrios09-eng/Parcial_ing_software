@@ -1,0 +1,13 @@
+digraph G { rankdir=LR; graph [fontname="DejaVu Sans", pad=0.2]; node [fontname="DejaVu Sans", fontsize=11]; edge [fontname="DejaVu Sans", fontsize=9];
+ node [shape=box, style="rounded,filled", fillcolor="#eef3fb", color="#46618f"];
+ esc [label="Escritora principal\n(edita escenas)"];
+ dis [label="Diseñador\n(define condiciones y efectos)"];
+ coo [label="Coordinadora del festival\n(verifica el contenido)"];
+ lec [label="Lector\n(juega)"];
+ arch [shape=note, fillcolor="#fff6dd", color="#a68a2b", label="Archivo de historia\n(JSON)"];
+ sis [shape=box3d, fillcolor="#dff1e2", color="#3b7a4b", label="Motor de historias\ninteractivas"];
+ esc -> arch [label="escribe"]; dis -> arch [label="define reglas"];
+ arch -> sis [label="se carga"];
+ coo -> sis [label="pide validar"]; sis -> coo [label="diagnósticos"];
+ lec -> sis [label="elige opción"]; sis -> lec [label="escena y opciones"];
+}

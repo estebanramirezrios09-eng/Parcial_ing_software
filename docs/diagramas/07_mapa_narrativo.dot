@@ -1,0 +1,11 @@
+digraph G { rankdir=LR; graph [fontname="DejaVu Sans", pad=0.2]; node [fontname="DejaVu Sans", fontsize=11]; edge [fontname="DejaVu Sans", fontsize=9];
+ node [shape=box, style="rounded,filled", fillcolor="#eef3fb", color="#46618f"];
+ E4 [fillcolor="#dff1e2", peripheries=2, label="E4 Rescate"]; E5 [fillcolor="#fde8e8", peripheries=2, label="E5 El eco"];
+ E6 [fillcolor="#eeeeee", peripheries=2, label="E6 Silencio"];
+ E1 [label="E1 La señal"]; E2 [label="E2 El archivo"]; E3 [label="E3 La respuesta"];
+ E1 -> E2 [label="revisar señal"];
+ E2 -> E3 [label="investigar\n[conoce_origen := true]"]; E2 -> E3 [label="continuar sin investigar"];
+ E3 -> E4 [label="activar con código\n{conoce_origen = true}\n[confia := true]"];
+ E3 -> E5 [label="activar sin verificar\n{conoce_origen = false}\n[confia := true]"];
+ E3 -> E6 [label="cortar\n[confia := false]"];
+}

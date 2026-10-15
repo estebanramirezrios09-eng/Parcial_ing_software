@@ -2,7 +2,7 @@
 
 Parcial práctico de Ingeniería de Software · versión del motor: **1.1.0** (1.0.0 + deshacer la última decisión)
 
-**Integrantes:** Esteban Ramírez Rios
+**Integrantes:** Esteban Ramírez Rios y Emmanuel David Angulo
 
 Motor de consola que interpreta narraciones descritas en archivos JSON: muestra la escena actual, ofrece solo
 las opciones compatibles con lo ocurrido, aplica consecuencias, detecta finales y rechaza contenido inválido
@@ -10,16 +10,21 @@ con mensajes que indican qué corregir. Las historias se cambian **sin tocar el 
 
 ## Versiones requeridas
 
-- Python 3.9 o superior (probado con 3.13).
+- Python 3.9 o superior (verificado en Windows con Python 3.14.3).
 - Para las pruebas: `pytest` (licencia MIT). El motor solo usa la biblioteca estándar.
 
 ## Instalación
 
-```bash
+Desde la raíz de este repositorio, en PowerShell:
+
+```powershell
 python -m venv .venv
-source .venv/bin/activate          # Windows: .venv\Scripts\activate
-pip install -r requirements.txt
+.\.venv\Scripts\python.exe -m pip install -r requirements.txt
+.\.venv\Scripts\Activate.ps1
 ```
+
+En Linux/macOS, activar con `source .venv/bin/activate` e instalar con
+`python -m pip install -r requirements.txt`.
 
 ## Ejecución
 
@@ -28,7 +33,7 @@ python -m transmision                                   # historia principal, pa
 python -m transmision historias/el_faro.json            # segunda historia, mismo motor
 python -m transmision historias/el_faro.json --validar  # solo validar el archivo
 python -m transmision --ruta revisar,investigar,activar_codigo   # reproduce un recorrido
-python -m transmision --ruta revisar,investigar,@deshacer,continuar   # '@deshacer' retrocede una decisión
+python -m transmision --ruta "revisar,investigar,@deshacer,continuar"   # '@deshacer' retrocede una decisión
 ```
 
 En la partida interactiva se escribe el **número** de la opción mostrada; `u` deshace la última decisión, `r` reinicia, `q` sale. Al llegar a un
@@ -97,9 +102,12 @@ historias/     la_ultima_transmision.json, el_faro.json (2.ª historia), invalid
 pruebas/       pruebas automatizadas y verificar_rnf.py
 resultados/    registros de ejecución
 docs/          informe.pdf, anexo.pdf, diagramas, gestion_cambio.md, generadores (opcionales)
-evidencia/     backlog.csv, historial_git.txt
-demo/          guion_demo.md
+evidencia/     backlog.csv, historial_git.txt, versiones.md
 ```
+
+El historial exportado corresponde a este repositorio. `evidencia/versiones.md` identifica la versión
+con retroceso y explica la ausencia de una versión ejecutable anterior en el historial disponible.
+Los guiones de grabación se conservan fuera del repositorio.
 
 ## Decisiones y acuerdos provisionales
 
@@ -119,5 +127,6 @@ demo/          guion_demo.md
 - Una historia con identificadores o textos muy extensos no se ha probado más allá de las dos historias incluidas.
 - Los IDs de opción de `la_ultima_transmision.json` coinciden con el archivo oficial del docente;
   si cambian, se ajustan las constantes de `pruebas/conftest.py`.
-- Las herramientas para regenerar los PDF (`docs/generar_*.py`) requieren `reportlab`, `matplotlib` y `graphviz`;
-  no forman parte del producto.
+- Las herramientas para regenerar los PDF (`docs/generar_*.py`) requieren `reportlab`, `pypdf`, `Pillow`,
+  `matplotlib` y el ejecutable `dot` de Graphviz; no son dependencias del motor. El generador de documentos
+  busca las fuentes DejaVu en `%SystemDrive%\ttf` (Windows) o `/usr/share/fonts/truetype/dejavu` (Linux).

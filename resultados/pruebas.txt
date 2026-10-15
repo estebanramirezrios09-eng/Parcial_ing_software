@@ -1,8 +1,6 @@
-============================= test session starts ==============================
-platform linux -- Python 3.13.16, pytest-9.1.1, pluggy-1.6.0 -- /usr/bin/python3
-cachedir: .pytest_cache
-rootdir: /tmp/claude-0/-home-claude/780ffefe-b6d5-57aa-aaea-14f81901df22/scratchpad/zip/Parcial_RamirezEsteban
-plugins: anyio-4.15.1
+============================= test session starts =============================
+platform win32 -- Python 3.14.3, pytest-9.1.1, pluggy-1.6.0 -- C:\Program Files\Python314\python.exe
+rootdir: D:\Downloads\Parcial_RamirezEsteban\git-repo
 collecting ... collected 103 items
 
 pruebas/test_i1_integracion.py::test_i1_los_tres_finales_son_alcanzables_desde_el_archivo[E4] PASSED [  0%]
@@ -109,4 +107,4 @@ pruebas/test_u6_deshacer.py::test_u6_entrada_invalida_conserva_el_historial_de_l
 pruebas/test_u6_deshacer.py::test_u6_una_nueva_eleccion_valida_vuelve_a_habilitar_el_retroceso PASSED [ 99%]
 pruebas/test_u6_deshacer.py::test_u6_no_deja_estado_compartido_con_la_instantanea PASSED [100%]
 
-============================= 103 passed in 0.30s ==============================
+============================= 103 passed in 0.30s =============================

@@ -1,0 +1,17 @@
+# Entornos y archivos temporales de Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+tmp/
+
+# Material de trabajo externo a la entrega
+/demo/
+/Convo.md
+/parcial/
+
+# Archivos del sistema
+Thumbs.db
+Desktop.ini
+.DS_Store

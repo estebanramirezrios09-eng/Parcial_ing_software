@@ -1,8 +1,22 @@
-# Historial de Git exportado el 2026-10-14 01:27 -05
-# Comando: git log --decorate --date=iso --pretty=format:'%h | %an | %ad | %s%d'
-# Versión previa al cambio: tag v1.0.0. Regenerar con el comando anterior antes de entregar.
+# Historial real de Git
+# Repositorio: https://github.com/emangulo112w/Parcial_ing_software
+# Exportado: 2026-10-14T21:40:54-05:00
+# Snapshot hasta HEAD: 5a983124da7cd5e8afe00ff846ed38df9047b02f
+# Version posterior: v1.1.0 = 2fa3133afdfb3e6fa1b64b798ecb0f4604e5060a
+# Version previa ejecutable v1.0.0: no disponible; ver evidencia/versiones.md.
+# Exportacion generada antes del commit que guarda este archivo.
+# Comando: git log --all --decorate=short --date=iso-strict --format=%H | %an <%ae> | %ad | %s%d
 
-41bfb30 | Esteban Ramírez Rios | 2026-10-14 01:27:00 -0500 | Documentación: README, informe, anexo, diagramas, backlog, guion de demo y resultados (HEAD -> master, tag: v1.0.0)
-d608162 | Esteban Ramírez Rios | 2026-10-14 01:22:01 -0500 | Verificación de RNF-01..03 (medición de RNF-01 con ast para evitar falso positivo)
-39ca324 | Esteban Ramírez Rios | 2026-10-14 01:22:01 -0500 | Pruebas automatizadas U1-U5 e I1 con CA01-CA03
-f5a98ac | Esteban Ramírez Rios | 2026-10-14 01:22:01 -0500 | Motor v1.0.0: dominio, validación, cargador, sesión, consola e historias JSON
+5a983124da7cd5e8afe00ff846ed38df9047b02f | Eramirezr <esteban.ramirezrios09@gmail.com> | 2026-10-14T20:24:37-05:00 | Delete docs/diagramas (HEAD -> main, origin/main, origin/HEAD)
+2fa3133afdfb3e6fa1b64b798ecb0f4604e5060a | Eramirezr <esteban.ramirezrios09@gmail.com> | 2026-10-14T20:18:53-05:00 | Motor v1.1.0: deshacer la última decisión (tag: v1.1.0)
+a3e27057094e169f00468527c65970cad369ee4c | Eramirezr <esteban.ramirezrios09@gmail.com> | 2026-10-14T20:03:15-05:00 | Implementar funcionalidad de deshacer decisión
+045a66df8b5c84fcb01bfd404cf15af811d6dd64 | Eramirezr <esteban.ramirezrios09@gmail.com> | 2026-10-14T20:03:00-05:00 | Create gestión de cambio
+763559d0acd19551cf74cad18f3166837de41677 | Eramirezr <esteban.ramirezrios09@gmail.com> | 2026-10-14T20:01:29-05:00 | Create diagramas
+8a187573b8c2f5f1ab0cc5cce6866bfcada92270 | Eramirezr <esteban.ramirezrios09@gmail.com> | 2026-10-14T20:00:48-05:00 | Delete docs/d
+1e48443d307afb60d1a4bbf38fb02b5d6557b866 | Eramirezr <esteban.ramirezrios09@gmail.com> | 2026-10-14T19:59:57-05:00 | Create d
+a4ded49ff8f014eba827d5973f7a86f00500e491 | Eramirezr <esteban.ramirezrios09@gmail.com> | 2026-10-14T19:59:33-05:00 | Delete docs
+b9343255fb1489d3d7c840bca5786c4e8940b839 | Eramirezr <esteban.ramirezrios09@gmail.com> | 2026-10-14T19:58:57-05:00 | Create docs
+84eea0cb0ab991361f182135043e26d9a31ce0a1 | Eramirezr <esteban.ramirezrios09@gmail.com> | 2026-10-14T19:56:20-05:00 | Delete docs
+d6e21a20df7007d1741be59bd8a2d7a030ed8bfb | Eramirezr <esteban.ramirezrios09@gmail.com> | 2026-10-14T14:39:48-05:00 | Add diagram generation script with Matplotlib and Graphviz
+aad506331effde561f16db827d37291a12900721 | Eramirezr <esteban.ramirezrios09@gmail.com> | 2026-10-14T14:38:44-05:00 | Revise README with project details and instructions
+84db746d918ec91f735619397f688c45a457cf89 | Eramirezr <esteban.ramirezrios09@gmail.com> | 2026-10-14T14:37:46-05:00 | Initial commit

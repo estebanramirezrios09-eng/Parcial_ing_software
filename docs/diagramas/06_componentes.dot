@@ -1,0 +1,13 @@
+digraph G { rankdir=TB; compound=true; graph [fontname="DejaVu Sans", pad=0.2]; node [fontname="DejaVu Sans", fontsize=11]; edge [fontname="DejaVu Sans", fontsize=9];
+ node [shape=component, style=filled, fillcolor="#ffffff", color="#46618f"];
+ subgraph cluster_ui { label="Interfaz"; style="rounded,filled"; fillcolor="#fff6dd"; color="#a68a2b"; consola [label="consola\n(entrada/salida, menús)"]; }
+ subgraph cluster_app { label="Estado de la partida"; style="rounded,filled"; fillcolor="#dff1e2"; color="#3b7a4b"; sesion [label="sesion\n(escena actual, variables,\nhistorial, reinicio)"]; }
+ subgraph cluster_dom { label="Reglas y modelo"; style="rounded,filled"; fillcolor="#eef3fb"; color="#46618f";
+   reglas [label="reglas\n(condiciones y efectos)"]; modelos [label="modelos\n(Historia, Escena, Opcion)"]; }
+ subgraph cluster_cont { label="Contenido"; style="rounded,filled"; fillcolor="#f3ecfb"; color="#6d4a99";
+   cargador [label="cargador\n(lee el archivo)"]; validador [label="validador\n(10 códigos de error)"]; diagnostico [label="diagnostico"]; }
+ datos [shape=note, fillcolor="#fff6dd", color="#a68a2b", label="historias/*.json\n(datos de los escritores)"];
+ consola -> sesion; consola -> cargador;
+ sesion -> reglas; sesion -> modelos; reglas -> modelos;
+ cargador -> validador; validador -> diagnostico; cargador -> modelos; cargador -> datos [style=dashed, label="lee"];
+}
