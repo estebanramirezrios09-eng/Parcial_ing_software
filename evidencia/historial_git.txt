@@ -1,13 +1,14 @@
 # Historial real de Git
 # Repositorio: https://github.com/emangulo112w/Parcial_ing_software
-# Exportado: 2026-10-14T21:40:54-05:00
-# Snapshot hasta HEAD: 5a983124da7cd5e8afe00ff846ed38df9047b02f
+# Exportado: 2026-10-14T21:44:10-05:00
+# Snapshot hasta HEAD: 01e13f2113958ee10e38124da7307a77313835e3
 # Version posterior: v1.1.0 = 2fa3133afdfb3e6fa1b64b798ecb0f4604e5060a
 # Version previa ejecutable v1.0.0: no disponible; ver evidencia/versiones.md.
 # Exportacion generada antes del commit que guarda este archivo.
 # Comando: git log --all --decorate=short --date=iso-strict --format=%H | %an <%ae> | %ad | %s%d
 
-5a983124da7cd5e8afe00ff846ed38df9047b02f | Eramirezr <esteban.ramirezrios09@gmail.com> | 2026-10-14T20:24:37-05:00 | Delete docs/diagramas (HEAD -> main, origin/main, origin/HEAD)
+01e13f2113958ee10e38124da7307a77313835e3 | emangulo112w <emmanueldavidangulogonzalez@gmail.com> | 2026-10-14T21:42:52-05:00 | Consolidar entrega revisada y evidencia del proyecto (HEAD -> main)
+5a983124da7cd5e8afe00ff846ed38df9047b02f | Eramirezr <esteban.ramirezrios09@gmail.com> | 2026-10-14T20:24:37-05:00 | Delete docs/diagramas (origin/main, origin/HEAD)
 2fa3133afdfb3e6fa1b64b798ecb0f4604e5060a | Eramirezr <esteban.ramirezrios09@gmail.com> | 2026-10-14T20:18:53-05:00 | Motor v1.1.0: deshacer la última decisión (tag: v1.1.0)
 a3e27057094e169f00468527c65970cad369ee4c | Eramirezr <esteban.ramirezrios09@gmail.com> | 2026-10-14T20:03:15-05:00 | Implementar funcionalidad de deshacer decisión
 045a66df8b5c84fcb01bfd404cf15af811d6dd64 | Eramirezr <esteban.ramirezrios09@gmail.com> | 2026-10-14T20:03:00-05:00 | Create gestión de cambio
